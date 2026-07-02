@@ -4,20 +4,26 @@
 #include <string.h>
 #include <stdio.h>
 
-typedef struct {
-    
+typedef struct
+{
+    int counter;
+
 } RecentCounter;
 
 
-RecentCounter* recentCounterCreate() {
+RecentCounter* recentCounterCreate()
+{
+    RecentCounter *obj = (RecentCounter *)malloc(sizeof(RecentCounter));
+    obj->counter = 0;
+}
+
+int recentCounterPing(RecentCounter* obj, int t)
+{
     
 }
 
-int recentCounterPing(RecentCounter* obj, int t) {
-    
-}
-
-void recentCounterFree(RecentCounter* obj) {
+void recentCounterFree(RecentCounter* obj)
+{
     
 }
 
