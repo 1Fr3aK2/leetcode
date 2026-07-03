@@ -1,9 +1,5 @@
 
- @param  num   your guess
- @return 	     -1 if num is higher than the picked number
- *			      1 if num is lower than the picked number
- *               otherwise return 0
- * int guess(int num);
+int guess(int num);
 
 
 #include <unistd.h>
@@ -12,20 +8,28 @@
 #include <stdlib.h>
 
 
-int guessNumber(int n){
-	int mid = (n /2);
-    int left = n - mid;
-    int right = n - (mid + 1);
-    int res = 0;
-    while (res != n)
+int guessNumber(int n)
+{
+    int low = 1;
+    int high = n;
+    int res;
+    while (low <= high)
     {
+        int mid = low + (high - low) / 2;
         res = guess(mid);
+        if (res == 0)
+            return mid;
         if (res == -1)
-            res = guess(right);
-        else if (res == 1)
-            res = guess(left);
-        else if (res == 0)
-            return res;
+            high = mid - 1;
+        else
+            low = mid + 1;
     }
-    return res;
+    return -1;
+}
+
+
+int main()
+{
+    int x = 90;
+    printf("My number is: %d, result after guessNumber(): %d\n", x, guessNumber(x));
 }
