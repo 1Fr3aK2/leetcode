@@ -11,7 +11,22 @@ struct TreeNode {
     struct TreeNode *right;
 };
 
+int maxD(struct TreeNode* root)
+{
+    if (!root)
+        return 0;
+    int left = maxD(root->left) + 1;
+    int right = maxD(root->right) + 1;
+    return (left > right ?  left : right);
+}
+
 bool isBalanced(struct TreeNode* root)
 {
-        
+    if (!root)
+        return true;
+    int left = maxD(root->left);
+    int right = maxD(root->right);
+    if (abs(left - right) > 1)
+        return false;
+    return (isBalanced(root->left) && isBalanced(root->right));
 }
